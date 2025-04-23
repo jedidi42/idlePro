@@ -71,7 +71,7 @@ const NavBar = () => {
         <nav className="flex size-full items-center justify-between p-4">
           {/* Logo and Product button */}
           <div className="flex items-center gap-7">
-            <img src="" alt="logo" className="w-10" />
+            <h3 className="nav-hover-btn">Idle Pro</h3>
 
             <Button
               id="product-button"
