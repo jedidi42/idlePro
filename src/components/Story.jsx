@@ -295,11 +295,11 @@ const SnakeGame = () => {
         </h1>
 
         {/* Game Canvas */}
-        <div className="relative mb-6">
+        <div className="relative mb-6 sm:flex sm:justify-center">
           <canvas
             ref={canvasRef}
-            width="400"
-            height="400"
+            width="350"
+            height="350"
             className="bg-gray-100 border border-gray-300 rounded-lg mx-auto block"
           />
 
