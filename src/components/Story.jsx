@@ -10,6 +10,9 @@ const SnakeGame = () => {
   const [speed, setSpeed] = useState(150);
   const [isMobile, setIsMobile] = useState(false);
 
+  const xVelocityRef = useRef(0);
+  const yVelocityRef = useRef(0);
+
   // Button state
   const buttonRef = useRef(null);
   const [buttonText, setButtonText] = useState("Contact Us (Don't Bother)");
@@ -74,7 +77,10 @@ const SnakeGame = () => {
     // Game logic
     const updateGame = () => {
       // Move snake
-      const head = { x: snake[0].x + xVelocity, y: snake[0].y + yVelocity };
+      const head = {
+        x: snake[0].x + xVelocityRef.current,
+        y: snake[0].y + yVelocityRef.current,
+      };
       snake.unshift(head);
 
       // Check wall collision
@@ -134,27 +140,27 @@ const SnakeGame = () => {
 
       switch (e.key) {
         case "ArrowUp":
-          if (yVelocity !== 1) {
-            xVelocity = 0;
-            yVelocity = -1;
+          if (yVelocityRef.current !== 1) {
+            xVelocityRef.current = 0;
+            yVelocityRef.current = -1;
           }
           break;
         case "ArrowDown":
-          if (yVelocity !== -1) {
-            xVelocity = 0;
-            yVelocity = 1;
+          if (yVelocityRef.current !== -1) {
+            xVelocityRef.current = 0;
+            yVelocityRef.current = 1;
           }
           break;
         case "ArrowLeft":
-          if (xVelocity !== 1) {
-            xVelocity = -1;
-            yVelocity = 0;
+          if (xVelocityRef.current !== 1) {
+            xVelocityRef.current = -1;
+            yVelocityRef.current = 0;
           }
           break;
         case "ArrowRight":
-          if (xVelocity !== -1) {
-            xVelocity = 1;
-            yVelocity = 0;
+          if (xVelocityRef.current !== -1) {
+            xVelocityRef.current = 1;
+            yVelocityRef.current = 0;
           }
           break;
         case " ":
@@ -239,29 +245,30 @@ const SnakeGame = () => {
 
   // Mobile controls handler
   const handleMobileControl = (direction) => {
+    console.log(direction);
     switch (direction) {
       case "up":
-        if (yVelocity !== 1) {
-          xVelocity = 0;
-          yVelocity = -1;
+        if (yVelocityRef.current !== 1) {
+          xVelocityRef.current = 0;
+          yVelocityRef.current = -1;
         }
         break;
       case "down":
-        if (yVelocity !== -1) {
-          xVelocity = 0;
-          yVelocity = 1;
+        if (yVelocityRef.current !== -1) {
+          xVelocityRef.current = 0;
+          yVelocityRef.current = 1;
         }
         break;
       case "left":
-        if (xVelocity !== 1) {
-          xVelocity = -1;
-          yVelocity = 0;
+        if (xVelocityRef.current !== 1) {
+          xVelocityRef.current = -1;
+          yVelocityRef.current = 0;
         }
         break;
       case "right":
-        if (xVelocity !== -1) {
-          xVelocity = 1;
-          yVelocity = 0;
+        if (xVelocityRef.current !== -1) {
+          xVelocityRef.current = 1;
+          yVelocityRef.current = 0;
         }
         break;
     }
